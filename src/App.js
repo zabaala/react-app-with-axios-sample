@@ -1,19 +1,19 @@
 import {useState, useEffect} from 'react';
-import { getTodos } from "./Domains/Todos/TodoServices";
+import { getTodos } from "./Data/Todos/TodoServices";
 import './App.css';
 
 function App() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    getTodos().then(response => setTodos(response.data));
-  }, [setTodos])
+    getTodos(response => setTodos(response))
+  }, [setTodos]);
 
   return (
     <div className="App">
       <h1>Todos</h1>
       <ul>
-        { todos.map(todo => <li>{todo.title}</li>) }
+        { todos.map(todo => <li key={todo.id}>{todo.title}</li>) }
       </ul>
     </div>
   );
